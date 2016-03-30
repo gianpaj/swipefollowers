@@ -1,10 +1,12 @@
+/* globals cordova, StatusBar */
+
 // Ionic Starter App
 
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards'])
+angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards', 'ngCordovaOauth', 'ngTwitter'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -13,7 +15,6 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards'])
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       cordova.plugins.Keyboard.disableScroll(true);
-
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
@@ -26,34 +27,39 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards'])
   $stateProvider
     .state('app', {
       url: '/app',
+
       abstract: true,
+
       templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
+      controller:  'AppCtrl'
     })
     .state('app.people', {
       url: '/people',
+
       views: {
         'menuContent': {
           templateUrl: 'views/people/people.html',
-          controller: 'profileCtrl'
+          controller:  'profileCtrl'
         }
       }
     })
     .state('app.settings', {
       url: '/settings',
+
       views: {
         'menuContent': {
           templateUrl: 'views/settings/settings.html',
-          controller: 'settingsCtrl'
+          controller:  'settingsCtrl'
         }
       }
     })
     .state('app.invite', {
       url: '/invite',
+
       views: {
         'menuContent': {
           templateUrl: 'views/invite/invite.html',
-          controller: 'inviteCtrl'
+          controller:  'inviteCtrl'
         }
       }
     });
@@ -61,14 +67,13 @@ angular.module('starter', ['ionic', 'ionic.contrib.ui.tinderCards'])
   $urlRouterProvider.otherwise('/app/people');
 })
 .directive('noScroll', function($document) {
-
   return {
     restrict: 'A',
-    link: function($scope, $element, $attr) {
 
+    link: function($scope, $element, $attr) {
       $document.on('touchmove', function(e) {
         e.preventDefault();
       });
     }
-  }
+  };
 });

@@ -11,15 +11,15 @@ angular.module('starter')
       angular.forEach(response.results, function (famous) {
         famous.followers = Math.floor(Math.random() * 1000);
         cardTypes.push(famous);
-        //console.log(JSON.stringify(famous));
+        // console.log(JSON.stringify(famous));
       });
-      cardTypes[cardTypes.length-1].visible = true;
+      cardTypes[cardTypes.length - 1].visible = true;
       $ionicLoading.hide();
     }).error(function (err) {
       console.log(err);
     });
 
-    //$scope.cards = Array.prototype.slice.call(cardTypes, 0);
+    // $scope.cards = Array.prototype.slice.call(cardTypes, 0);
     $scope.cards = cardTypes;
   };
 
@@ -29,7 +29,7 @@ angular.module('starter')
     console.log(index, 'destroyed');
     $scope.cards.splice(index, 1);
     if ($scope.cards.length) {
-      $scope.cards[$scope.cards.length-1].visible = true;
+      $scope.cards[$scope.cards.length - 1].visible = true;
     }
   };
 
@@ -38,7 +38,7 @@ angular.module('starter')
     // newCard.id = Math.random();
     console.log('addcard');
     $scope.cards.push(angular.extend({}, newCard));
-  }
+  };
 
   $scope.yesCard = function(index) {
     console.log('YES');
@@ -68,6 +68,15 @@ angular.module('starter')
 
   $scope.onDragToggle = function(trueOrFalse) {
     console.log('onDragToggle', trueOrFalse);
-    $scope.cards[cardTypes.length-2].visible = trueOrFalse;
+    $scope.cards[cardTypes.length - 2].visible = trueOrFalse;
   };
-})
+
+  $scope.onPartialSwipe = function (argument) {
+    // console.log(argument);
+    if (argument > 0.15) {
+      $scope.cards[cardTypes.length - 2].visible = true;
+    } else {
+      $scope.cards[cardTypes.length - 2].visible = false;
+    }
+  };
+});

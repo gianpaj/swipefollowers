@@ -1,4 +1,4 @@
-<ion-view view-title="Chemistry">
+<ion-view view-title="Swipe Followers">
   <ion-nav-title>
     <div class="padding">
       <img height="30px" src="img/logo.png">
@@ -8,15 +8,16 @@
     <td-cards>
       <td-card id="td-card" ng-repeat="card in cards" on-destroy="cardDestroyed($index)"
           on-swipe-left="cardSwipedLeft($index)" on-swipe-right="cardSwipedRight($index)"
-          on-drag-start="onDragToggle(true)" on-snap-back=onDragToggle(false)>
+          on-drag-start="" on-snap-back=onDragToggle(false)
+          on-partial-swipe="onPartialSwipe(amt)">
         <div class="image">
           <div class="yes-text overlayBox"><div class="yesBox boxed" id="centerMe">Yes</div></div>
           <div class="no-text overlayBox"><div class="noBox boxed">No</div></div>
-          <img ng-src="{{card.user.picture.large}}">
+          <img ng-src="{{::card.user.picture.large}}">
         </div>
         <div class="buttondesc" ng-show="card.visible">
-          <p class="username">@{{card.user.username}}</p>
-          <p class="followers">no. followers: {{card.followers}}</p>
+          <p class="username">@{{::card.user.username}}</p>
+          <p class="followers">no. followers: {{::card.followers}}</p>
           <button ng-click="noCard($index);cardDestroyed($index)" class="button button-assertive">No</button>
           <button ng-click="yesCard($index);cardDestroyed($index)" class="button button-balanced">Yes</button>
         </div>
