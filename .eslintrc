@@ -6,6 +6,7 @@
     "mocha": true
   },
   "rules": {
+    "quotes" : [2, "single", "avoid-escape"],
     "semi": [2, "always"],
     "no-extra-semi": 2,
     "handle-callback-err": 2,
